@@ -26,7 +26,7 @@
                     <div class="form-group col-md-6">
                         <label for="roomSelect">Room name *</label>
                         <select name="room" id="roomSelect" class="form-control @error('room') is-invalid @enderror" required>
-                          <option date-price="0">Choose...</option>
+                          <option value="default" date-price="0">Choose...</option>
                             @foreach ($rooms as $room)
                                 <option data-price={{$room->room_price_night}} value="{{$room->id}}">{{$room->room_name}}</option>
                             @endforeach

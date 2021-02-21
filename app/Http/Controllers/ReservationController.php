@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rules\DateInPastCheck;
 
 class ReservationController extends Controller
 {
@@ -12,9 +13,9 @@ class ReservationController extends Controller
 
         $request->validate([
             'room' => 'required|exists:rooms,id',
-            'email' => 'required',
+            'email' => 'required|email',
             'phone' => 'required',
-            'dateReservation' => 'required',
+            'dateReservation' => ['required', new DateInPastCheck],
             'name' => 'required',
 
         ]);
@@ -30,7 +31,7 @@ class ReservationController extends Controller
     public function messages()
     {
         return [
-            'room.exists' => 'Please choose valid room selection.',
+            'room.exists:rooms,id' => 'Please choose valid room selection.',
         ];
     }
 }

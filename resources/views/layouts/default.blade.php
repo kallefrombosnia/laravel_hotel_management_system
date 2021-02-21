@@ -13,10 +13,12 @@
     <header>
         <div class="container">
             <div class="navbar">
-                <div class="hotel-name">
-                    <img src="/images/laravel.png" alt="" class="logo">
-                    Hotel Laravel
-                </div>
+                <a href="{{route('dashboard')}}">
+                    <div class="hotel-name">
+                        <img src="/images/laravel.png" alt="" class="logo">
+                        Hotel Laravel
+                    </div>
+                </a>
 
                 <div class="float-right">
                     <a href="{{route('login')}}"><span class="float-right">Login</span></a>

@@ -42,10 +42,6 @@ $('#inputPhone').on('focus', () =>{
 
 
 
-
-
-
-
 const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 
 $(function() {
@@ -69,6 +65,7 @@ const calculateDiscount = (days) => {
 
     const price = $('#roomSelect option:selected').data('price');
 
+    // Could use switch but but follow logic is easier
     if(days){
 
         if(days >= 10){
