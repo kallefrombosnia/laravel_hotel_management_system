@@ -1,3 +1,4 @@
+window.moment = require('moment');
 require('./bootstrap');
 require('./daterangepicker');
 require('../../node_modules/jquery/dist/jquery.min.js');

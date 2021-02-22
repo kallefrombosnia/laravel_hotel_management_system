@@ -28,9 +28,16 @@ class DateInPastCheck implements Rule
     {
         if($value){
 
+            // "02/22/2021 - 02/27/2021" 
+
             $dates = explode('-', $value);
 
-            return Carbon::createFromFormat('m/d/Y', trim($dates[0], '\n'))->isPast() && Carbon::createFromFormat('m/d/Y', trim($dates[1], '\n'))->isPast();
+            if(Carbon::createFromFormat('m/d/Y', str_replace(' ', '' , $dates[0]))->isPast() && Carbon::createFromFormat('m/d/Y', str_replace(' ', '', $dates[1]))->isPast()){
+                return false;
+            }
+
+            return true;
+
         }
 
         return false;
