@@ -12,7 +12,6 @@
 
               @csrf
 
-
               @if(Session::get('success'))
                 <div class="alert alert-success">
                   {{Session::get('success')}}
@@ -76,11 +75,16 @@
                   <small id="emailHelp" class="form-text text-muted">Areas with * are required.</small>
                 </div>
 
+                <div id="order_id"></div>
+
+                {!!  GoogleReCaptchaV3::renderField('order', 'order_id') !!}
+
+                <span id="phone-error" class="form-text text-danger">@error('g-recaptcha-response') Captcha error: {{ $message }} @enderror</span>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
         </div>
     </div>
-
 
 @endsection
     

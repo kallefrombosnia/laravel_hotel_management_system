@@ -64,7 +64,7 @@ $(function() {
 
 const calculateDiscount = (days) => {
 
-    const price = $('#roomSelect option:selected').data('price');
+    const price = Number($('#roomSelect option:selected').data('price')) * days;
 
     // Could use switch but but follow logic is easier
     if(days){

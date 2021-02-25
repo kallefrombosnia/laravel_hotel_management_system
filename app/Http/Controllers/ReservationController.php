@@ -11,13 +11,21 @@ use App\Models\Room;
 use App\Models\Reservation;
 use App\Mail\SendCustomerConfirmationMail;
 use App\Mail\SendHotelOrderNoticeMail;
-
+use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
+use GoogleReCaptchaV3;
 
 class ReservationController extends Controller
 {
     public function createReservation(Request $request){
 
+        dd(GoogleReCaptchaV3::verifyResponse(
+            $request->input('g-recaptcha-response'),
+            $request->getClientIp()
+            )
+         ->getMessage());
+
         $request->validate([
+            'g-recaptcha-response' => [new GoogleReCaptchaV3ValidationRule('order')],
             'room' => 'required|exists:rooms,id',
             'email' => 'required|email',
             'phone' => 'required|max:128',
@@ -25,10 +33,6 @@ class ReservationController extends Controller
             'name' => 'required|string|min:3|max:150',
         ]);
 
-        
-        /*
-            This part is implemented but after I realized that I missed point I will leave this here
-        */
 
         // Get night propert and split values
         $nightsRange = explode('-', $request->dateReservation);

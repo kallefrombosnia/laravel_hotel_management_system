@@ -12,8 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/moment.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .css('resources/css/app.css', 'public/css')
-    .css('resources/css/daterangepicker.css', 'public/css')
     .sourceMaps();

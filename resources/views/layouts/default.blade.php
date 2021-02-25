@@ -22,7 +22,6 @@
 
                 <div class="float-right">
                     <a href="{{route('login')}}"><span class="float-right">Login</span></a>
-                    <a href={{route('register')}}><span class="float-right">Register</span></a>
                     <a href={{route('admin')}}><span class="float-right">Admin panel</span></a>
                 </div>   
 

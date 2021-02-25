@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +25,18 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/', [ReservationController::class, 'createReservation'])->name('reservation');
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
-
-Route::get('/login', [DashboardController::class, 'index'])->name('login');
-
-Route::get('/register', [DashboardController::class, 'index'])->name('register');
-
-Route::get('/logout', [DashboardController::class, 'index'])->name('logout');
 
 /*
     Private routes
 */
+
+
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm'  => false, 
+    'verify'   => false,  
+]);
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');

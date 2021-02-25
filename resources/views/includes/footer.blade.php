@@ -5,5 +5,6 @@
 </footer>
 
 <!-- JavaScript -->
+{!!  GoogleReCaptchaV3::init() !!}
 <script src="{{ URL::asset('js/moment.min.js')}}"></script>
 <script src="{{ URL::asset('js/app.js')}}"></script>
