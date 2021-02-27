@@ -22,6 +22,12 @@
                       </div>
                     @endif
 
+                    @if(Session::get('fail'))
+                      <div class="alert alert-danger">
+                        {{Session::get('fail')}}
+                      </div>
+                    @endif
+
                     <div id="discount-message" class="alert alert-primary" style="display: none" role="alert">
                       <span></span>
                     </div>

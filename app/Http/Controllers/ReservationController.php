@@ -18,14 +18,11 @@ class ReservationController extends Controller
 {
     public function createReservation(Request $request){
 
-        dd(GoogleReCaptchaV3::verifyResponse(
-            $request->input('g-recaptcha-response'),
-            $request->getClientIp()
-            )
-         ->getMessage());
+        if(!GoogleReCaptchaV3::verifyResponse($request->input('g-recaptcha-response'))->isSuccess()){
+            return redirect()->back()->with('fail', 'Captcha error');
+        }
 
         $request->validate([
-            'g-recaptcha-response' => [new GoogleReCaptchaV3ValidationRule('order')],
             'room' => 'required|exists:rooms,id',
             'email' => 'required|email',
             'phone' => 'required|max:128',

@@ -12,7 +12,7 @@
     <p>Leave date: {{ $leave_date }} </p>
     <p>Hotel room type: {{$room_name}}</p>
     <p>That makes it total of {{ $total_days }} days @if($total_days > 3) and you get {{$discount}}% discount @endif .</p>
-    <p>Total price: {{$total_price}}$ @if($total_days > 3) with discount @endif.</p>
+    <p>Total price: {{$total_price}}€ @if($total_days > 3) with discount @endif.</p>
 
     <p>Thank you for using our services.</p>
     
