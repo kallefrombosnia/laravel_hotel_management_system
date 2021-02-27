@@ -3,11 +3,15 @@ require('./bootstrap');
 require('./daterangepicker');
 require('../../node_modules/jquery/dist/jquery.min.js');
 
+let room = null;
+
 
 $('#roomSelect').on('change', () =>{
 
     // Get data price attribute from selected room
     let price = $('#roomSelect option:selected').data('price');
+
+    showPreview($('#roomSelect option:selected').data('id'));
 
     if($('#roomSelect' ).hasClass( 'is-invalid' )){
         $('#roomSelect' ).removeClass('is-invalid');
@@ -116,4 +120,16 @@ const calculateDaysReserved = (startDate, endDate) => {
     }
 
     return 0;
+}
+
+const showPreview = (id) => {
+
+    $('.show-preview-text').hide();
+
+    room ? $(`#room-${room}`).hide() : null;
+
+    $(`#room-${id}`).show();
+
+    return room = id;
+
 }
