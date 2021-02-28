@@ -1,4 +1,4 @@
 # SPRD.digital Laravel job test
 
 
-Demo: [laravel.srbultras.info](https://laravel.srbultras.info)
+Demo: [laravel.gb-host.me](https://laravel.gb-host.me)
