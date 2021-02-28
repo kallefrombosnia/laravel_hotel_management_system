@@ -105,7 +105,7 @@
 
                   @foreach ($rooms as $room)
                     <div id="room-{{ $room->id }}" class="hotel-room-preview" style="display: none">
-                      <img src="images/rooms/{{ ucfirst($room->room_name) }}.jpg" alt="">
+                      <img src="{{ asset('storage/' . $room->id . '.jpg') }}" alt="">
                       <div class="text-center description">
                         {{$room->room_description}}
                       </div>

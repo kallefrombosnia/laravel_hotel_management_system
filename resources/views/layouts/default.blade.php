@@ -15,14 +15,16 @@
             <div class="navbar">
                 <a href="{{route('dashboard')}}">
                     <div class="hotel-name">
-                        <img src="/images/laravel.png" alt="" class="logo">
+                        <img src="{{asset('storage/laravel.png')}}" alt="" class="logo">
                         Hotel Laravel
                     </div>
                 </a>
 
                 <div class="float-right">
-                    <a href="{{route('login')}}"><span class="float-right">Login</span></a>
-                    <a href={{route('admin')}}><span class="float-right">Admin panel</span></a>
+                    @if (!Auth::check())
+                        <a href="{{route('login')}}"><span class="float-right">Login</span></a>
+                    @endif
+                    <a href={{route('admin.index')}}><span class="float-right">Admin panel</span></a>
                 </div>   
 
             </div>

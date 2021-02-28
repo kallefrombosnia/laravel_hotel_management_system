@@ -15,4 +15,16 @@ class Room extends Model
      * @var string
      */
     protected $table = 'rooms';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'room_name',
+        'room_description',
+        'room_price_night',
+        'room_short_description',
+    ];
 }

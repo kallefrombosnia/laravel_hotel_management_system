@@ -39,4 +39,4 @@ Auth::routes([
 ]);
 
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::resource('/admin', AdminController::class);

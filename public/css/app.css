@@ -10070,3 +10070,22 @@ footer{
     padding-top: 18px;
     font-size: 14px;
 }
+
+
+/*
+    Admin 
+*/
+
+.action-button{
+    margin-right: 5px;
+}
+
+.image-preview{
+    width: auto;
+    height: 128px;
+    padding-right: 8px;
+}
+
+.table td, th {
+    text-align: center;   
+ }
