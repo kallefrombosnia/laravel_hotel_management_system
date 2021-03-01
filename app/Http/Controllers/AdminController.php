@@ -49,6 +49,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
 
+        // Validate user input
         $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -57,17 +58,23 @@ class AdminController extends Controller
             'image' => 'required'
         ]);
 
+        // Create a new object instance
         $room = new Room();
 
+        // Assign values
         $room->room_name = $request->name;
         $room->room_price_night = $request->price;
         $room->room_short_description = $request->short_description;
         $room->room_description = $request->long_description;
 
+        // Save to database
         $room->save();
 
+        // Also save an image to the public storage folder
         $request->image->storeAs('public', ($room->id . '.jpg'));
 
+
+        // Redirect back with flash session 
         return redirect()->route('admin.index')
             ->with('success', 'Room created successfully.');
     }
@@ -80,8 +87,11 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+
+        // Find row in db using room id
         $room = Room::find($id);
 
+        // Return view 
         return view('pages.room.view', ['room' => $room]);
     }
 
@@ -95,8 +105,10 @@ class AdminController extends Controller
     public function edit($id)
     {
 
+        // Find row in db using room id
         $room = Room::find($id);
 
+        // Return view 
         return view('pages.room.edit', ['room' => $room]);
     }
 
@@ -110,6 +122,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
 
+        // Validate user input
         $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -117,14 +130,16 @@ class AdminController extends Controller
             'long_description' => 'required',
         ]);
 
-
+        // Find row in database
         $room = Room::find($id);
 
+        // Assing new values
         $room->room_name = $request->name;
         $room->room_price_night = $request->price;
         $room->room_short_description = $request->short_description;
         $room->room_description = $request->long_description;
 
+        // Overwrite
         $room->save();
         
 
@@ -139,7 +154,7 @@ class AdminController extends Controller
             }
         }
 
-
+        // Redirect back with flash success session
         return redirect()->route('admin.index')
             ->with('success', 'Room "'. $request->name .'" was updated successfully');
     }
@@ -151,10 +166,14 @@ class AdminController extends Controller
      */
     public function destroy($room)
     {
+
+        // Find room id
         $room = Room::find($room);
 
+        // Delete row
         $room->delete();
 
+        // Redirect back with success flash message
         return redirect()->route('admin.index')
             ->with('success', 'Room deleted successfully');
     }

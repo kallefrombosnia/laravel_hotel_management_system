@@ -11,17 +11,25 @@ use App\Models\Room;
 use App\Models\Reservation;
 use App\Mail\SendCustomerConfirmationMail;
 use App\Mail\SendHotelOrderNoticeMail;
-use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
 use GoogleReCaptchaV3;
 
 class ReservationController extends Controller
 {
+    /**
+     * Store a newly created reservation in database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function createReservation(Request $request){
 
+        // Check captcha input 
         if(!GoogleReCaptchaV3::verifyResponse($request->input('g-recaptcha-response'))->isSuccess()){
+            // If captcha fails return error flash message
             return redirect()->back()->with('fail', 'Captcha error');
         }
 
+        // Validate user input with rules
         $request->validate([
             'room' => 'required|exists:rooms,id',
             'email' => 'required|email',
@@ -127,8 +135,10 @@ class ReservationController extends Controller
         $reservation->leave_date = $nightsRange[1];
         $reservation->registration_date = Carbon::now();
     
+        // Save reservation
         $reservation->save();
 
+        // Return success flash message
         return redirect()->back()->with('success', 'You ordered our services, check your email for confirmation.');
 
     }
